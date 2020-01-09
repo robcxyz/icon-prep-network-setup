@@ -17,18 +17,17 @@ services:
           restart: always
 
      prep:
-          image: '{{ image }}'
-          container_name: 'prep'
+          image: "iconloop/prep-node"
+          container_name: 'prep-{{ network_name }}'
           environment: {% if network_name == 'mainnet' %}
 
                NETWORK_ENV: "mainnet"
-               LOG_OUTPUT_TYPE: "file"
-               SWITCH_BH_VERSION3: "10324749"
                CERT_PATH: "/cert"
                LOOPCHAIN_LOG_LEVEL: "DEBUG"
                ICON_LOG_LEVEL: "DEBUG"
                FASTEST_START: "yes"{% elif network_name == 'testnet' %}
 
+               NETWORK_ENV: "PREP-TestNet"
                CERT_PATH: "/cert"
                LOOPCHAIN_LOG_LEVEL: "DEBUG"
                ICON_LOG_LEVEL: "DEBUG"
